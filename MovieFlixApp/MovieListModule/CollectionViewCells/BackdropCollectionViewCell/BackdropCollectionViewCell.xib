@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackdropCollectionViewCell" id="gTV-IL-0wX" customClass="BackdropCollectionViewCell" customModule="MovieFlixApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="202"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="377" height="202"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAE-Y5-9C3">
+                        <rect key="frame" x="10" y="10" width="357" height="182"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mak-f0-8eT">
+                                <rect key="frame" x="0.0" y="0.0" width="357" height="182"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Y2c-xR-MaA">
+                                <rect key="frame" x="168.5" y="81" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="WZf-3Y-R0q"/>
+                                    <constraint firstAttribute="height" constant="20" id="bNy-P5-wZA"/>
+                                </constraints>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Y2c-xR-MaA" firstAttribute="centerY" secondItem="mak-f0-8eT" secondAttribute="centerY" id="HDJ-Jk-2Ut"/>
+                            <constraint firstItem="mak-f0-8eT" firstAttribute="top" secondItem="FAE-Y5-9C3" secondAttribute="top" id="JgA-BH-AJK"/>
+                            <constraint firstItem="mak-f0-8eT" firstAttribute="leading" secondItem="FAE-Y5-9C3" secondAttribute="leading" id="RPr-Qi-t24"/>
+                            <constraint firstAttribute="trailing" secondItem="mak-f0-8eT" secondAttribute="trailing" id="fCh-Us-bkM"/>
+                            <constraint firstAttribute="bottom" secondItem="mak-f0-8eT" secondAttribute="bottom" id="kOf-VU-5xx"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="kxE-Pj-Qi3"/>
+                            <constraint firstItem="Y2c-xR-MaA" firstAttribute="centerX" secondItem="mak-f0-8eT" secondAttribute="centerX" id="nGH-p0-0tY"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="FAE-Y5-9C3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="0eN-fv-4iq"/>
+                <constraint firstItem="FAE-Y5-9C3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="QOO-gV-uXJ"/>
+                <constraint firstAttribute="trailing" secondItem="FAE-Y5-9C3" secondAttribute="trailing" constant="10" id="Zah-zT-rj9"/>
+                <constraint firstAttribute="bottom" secondItem="FAE-Y5-9C3" secondAttribute="bottom" constant="10" id="iCw-uH-4B5"/>
+            </constraints>
+            <size key="customSize" width="377" height="202"/>
+            <connections>
+                <outlet property="backdropImageView" destination="mak-f0-8eT" id="Enf-rp-Tlc"/>
+                <outlet property="backdropImgActivity" destination="Y2c-xR-MaA" id="zne-op-CMQ"/>
+            </connections>
+            <point key="canvasLocation" x="235.50724637681162" y="117.1875"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
