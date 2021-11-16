@@ -28,6 +28,9 @@
                                     <string>Title</string>
                                     <string>Title</string>
                                 </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="d18-Jc-Bzf"/>
+                                </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MOR-Wf-Ifd">
                                 <rect key="frame" x="0.0" y="132" width="414" height="730"/>
@@ -69,6 +72,7 @@
                     <navigationItem key="navigationItem" id="fTL-LH-RQd"/>
                     <connections>
                         <outlet property="moviesColletionView" destination="MOR-Wf-Ifd" id="INz-GN-XVw"/>
+                        <outlet property="searchView" destination="7zt-lg-chz" id="L2R-Re-TwK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

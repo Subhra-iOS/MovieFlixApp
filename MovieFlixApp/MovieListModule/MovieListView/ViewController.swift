@@ -12,10 +12,13 @@ let backdropCellIdentifier = "BackdropCollectionViewCell"
 
 class ViewController: UIViewController {
 
-    
+    @IBOutlet weak var searchView: SearchView!
     @IBOutlet weak var moviesColletionView: UICollectionView!
+    
     private var viewModel: MovieListViewModel?
     private(set) var movieList: [MovieListCellViewModel]?
+    private(set)var tempSearchArray: [MovieListCellViewModel]?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,17 @@ class ViewController: UIViewController {
         
         self.moviesColletionView.register(UINib(nibName: "BackdropCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: backdropCellIdentifier)
         self.moviesColletionView.register(UINib(nibName: "PosterCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: posterCellIdentifier)
+        
+    }
+    
+    private func generateSearchMoviesModelswith(list: [MovieListCellViewModel]){
+        let searchMovies: [SearchMovieModel] = list.map { (cellViewModel) -> SearchMovieModel in
+            return SearchMovieModel(id: cellViewModel.movieId, title: cellViewModel.title, description: cellViewModel.overview)
+        }
+        
+        self.searchView.movies = searchMovies
+        self.searchView.delegate = self
+        self.searchView.searchDelegate = self
     }
 
     private func loadViewModel(){
@@ -42,8 +56,15 @@ class ViewController: UIViewController {
                   remoteModels.count > 0 else{ return }
             
             weakSelf.movieList = remoteModels
+            weakSelf.tempSearchArray = remoteModels
+            weakSelf.generateSearchMoviesModelswith(list: remoteModels)
             weakSelf.moviesColletionView.reloadData()
         })
+    }
+    
+    func update(list: [MovieListCellViewModel]){
+        self.movieList = list
+        self.moviesColletionView.reloadData()
     }
 
 }
