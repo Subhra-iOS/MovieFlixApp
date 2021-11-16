@@ -45,4 +45,13 @@ extension ViewController: SearchResultProtocol{
         }
     }
     
+    func generateSearchMoviesModelswith(list: [MovieListCellViewModel]){
+        let searchMovies: [SearchMovieModel] = list.map { (cellViewModel) -> SearchMovieModel in
+            return SearchMovieModel(id: cellViewModel.movieId, title: cellViewModel.title, description: cellViewModel.overview)
+        }
+        
+        self.searchView.set(list: searchMovies, searchDelegate: self)
+        self.searchView.delegate = self
+    }
+    
 }

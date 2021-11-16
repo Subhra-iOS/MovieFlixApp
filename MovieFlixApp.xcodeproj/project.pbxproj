@@ -32,6 +32,7 @@
 		2A7AB78B2742C6B80053941E /* ListServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB78A2742C6B80053941E /* ListServiceManager.swift */; };
 		2A7AB7902742C83A0053941E /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB78F2742C83A0053941E /* ListService.swift */; };
 		2A7AB7952742CE5F0053941E /* CustomProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB7942742CE5F0053941E /* CustomProtocols.swift */; };
+		2ADD130927442ABB00D4CF62 /* ViewController+ColletionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD130827442ABB00D4CF62 /* ViewController+ColletionViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		2A7AB78A2742C6B80053941E /* ListServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListServiceManager.swift; sourceTree = "<group>"; };
 		2A7AB78F2742C83A0053941E /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		2A7AB7942742CE5F0053941E /* CustomProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProtocols.swift; sourceTree = "<group>"; };
+		2ADD130827442ABB00D4CF62 /* ViewController+ColletionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ColletionViewLayout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				2A7AB70C2742A6050053941E /* ViewController.swift */,
 				2A7091C327437EA80069706B /* ViewController+ColletionViewDataSource.swift */,
 				2A7091DE2743C5F00069706B /* ViewController+CollectionViewDelegate.swift */,
+				2ADD130827442ABB00D4CF62 /* ViewController+ColletionViewLayout.swift */,
 				2A7091E92743DE3B0069706B /* ViewController+Search.swift */,
 			);
 			path = MovieListView;
@@ -424,6 +427,7 @@
 				2A7AB7902742C83A0053941E /* ListService.swift in Sources */,
 				2A7AB76B2742BA0A0053941E /* SearchView.swift in Sources */,
 				2A7091DF2743C5F00069706B /* ViewController+CollectionViewDelegate.swift in Sources */,
+				2ADD130927442ABB00D4CF62 /* ViewController+ColletionViewLayout.swift in Sources */,
 				2A7091CC274389850069706B /* String+Extension.swift in Sources */,
 				2A7AB70B2742A6050053941E /* SceneDelegate.swift in Sources */,
 				2A7091C427437EA80069706B /* ViewController+ColletionViewDataSource.swift in Sources */,

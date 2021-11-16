@@ -20,9 +20,13 @@ protocol SearchResultProtocol {
 
 class SearchView: UISearchBar {
     
-    var movies: [SearchMovieModel]?
-    var searchDelegate: SearchResultProtocol?
+    private var movies: [SearchMovieModel]?
+    private var searchDelegate: SearchResultProtocol?
 
+    func set(list: [SearchMovieModel], searchDelegate: SearchResultProtocol?){
+        self.movies = list
+        self.searchDelegate = searchDelegate
+    }
     
     func serach(movieInfo: String){
         

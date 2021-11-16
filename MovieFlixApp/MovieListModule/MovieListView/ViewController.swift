@@ -34,16 +34,6 @@ class ViewController: UIViewController {
         self.moviesColletionView.register(UINib(nibName: "PosterCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: posterCellIdentifier)
         
     }
-    
-    private func generateSearchMoviesModelswith(list: [MovieListCellViewModel]){
-        let searchMovies: [SearchMovieModel] = list.map { (cellViewModel) -> SearchMovieModel in
-            return SearchMovieModel(id: cellViewModel.movieId, title: cellViewModel.title, description: cellViewModel.overview)
-        }
-        
-        self.searchView.movies = searchMovies
-        self.searchView.delegate = self
-        self.searchView.searchDelegate = self
-    }
 
     private func loadViewModel(){
         self.viewModel = MovieListViewModel(serviceManager: ListServiceManager(apiKey: API.Key.api_Key))
@@ -69,31 +59,4 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController{
-    
-    private func collectionViewLayoutSetup(){
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        
-        let sizeCollectionViewItem : CGSize = self.collectionViewitemSize(collectionView: self.moviesColletionView)
-        
-        layout.itemSize = CGSize(width: sizeCollectionViewItem.width, height: sizeCollectionViewItem.width - 50)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.minimumLineSpacing = 0.0
-        layout.minimumInteritemSpacing = 0.0
-        
-        
-        self.moviesColletionView.setCollectionViewLayout(layout, animated: false)
-        
-    }
-    
-    private func collectionViewitemSize(collectionView:UICollectionView) -> CGSize{
-        
-        let sizeCollectionViewItem : CGSize = CGSize(width: (collectionView.frame.size.width ) - 20 , height: 0)
-        return CGSize(width: sizeCollectionViewItem.width, height: sizeCollectionViewItem.width - 100)
-        
-    }
-    
-}
 
