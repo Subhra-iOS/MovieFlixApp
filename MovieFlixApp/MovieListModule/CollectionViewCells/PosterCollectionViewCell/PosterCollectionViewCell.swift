@@ -25,6 +25,9 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.posterImageView.layer.cornerRadius = 8
+        self.posterImageView.clipsToBounds = true
+        self.posterImageView.contentMode = .scaleAspectFill
     }
     
     var cellModel: MovieListCellViewModel?{
@@ -62,7 +65,7 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
             return
         }
         
-        print("\(String(describing: self.fileStorePath))")
+       // print("\(String(describing: self.fileStorePath))")
         
         self.posterActivity.startAnimating()
         self.cellModel?.downloadRemoteFileWith(imageUrl: url,

@@ -20,6 +20,9 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.backdropImageView.layer.cornerRadius = 8
+        self.backdropImageView.clipsToBounds = true
+        self.backdropImageView.contentMode = .scaleAspectFill
     }
     
     var cellModel: MovieListCellViewModel?{
