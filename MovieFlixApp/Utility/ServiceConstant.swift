@@ -30,6 +30,5 @@ enum API{
 enum ServiceError: Error {
     case invalid
     case noData
+    case unableToProcess
 }
-
-

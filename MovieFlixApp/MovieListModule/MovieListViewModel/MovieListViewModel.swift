@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 struct MovieListCellViewModel {
-    let movieId: Double
-    let mostPopular: Bool
+    let movieId: Int
+    let mostPopular: MovieType
     let backdropImageUrl: String
     let posterImageUrl: String
     let title: String
@@ -19,13 +19,32 @@ struct MovieListCellViewModel {
     let vote_average: Double
     let vote_count: Double
     let original_language: String
+    
+    func downloadRemoteFileWith(imageUrl: String,
+                                path: String,
+                                fileId: String,
+                                completion: @escaping (_ status: Bool,
+                                                       _ filePath: String?,
+                                                       _ taskIdentifier: String?) -> Void) -> Void{
+        
+        if MFCommon().isFileExistAt(path){
+            completion(true, path, fileId)
+        }else{
+            let fileDownloader: FileDownloader = FileDownloader(url: imageUrl, filePath: path, taskIdentifier: fileId)
+            fileDownloader.downloadFile()
+            fileDownloader.operationStateHandler = { ( status,  fileStorePath,  _identifier) in
+                completion(status, fileStorePath, _identifier)
+            }
+        }
+    }
+    
 }
 
 class MovieListViewModel {
     private let serviceManager: ListServiceManager
     
-    var cancelable: Set<AnyCancellable> = Set<AnyCancellable>()
-    var moviePublisher = CurrentValueSubject<[MovieListCellViewModel]?, Never>([MovieListCellViewModel(movieId: 0, mostPopular: false, backdropImageUrl: "", posterImageUrl: "", title: "", overview: "", releaseDate: "", vote_average: 0.0, vote_count: 0.0, original_language: "")])
+    private var cancelable: Set<AnyCancellable> = Set<AnyCancellable>()
+    private var moviePublisher = CurrentValueSubject<[MovieListCellViewModel]?, Never>([MovieListCellViewModel(movieId: 0, mostPopular: .average, backdropImageUrl: "", posterImageUrl: "", title: "", overview: "", releaseDate: "", vote_average: 0.0, vote_count: 0.0, original_language: "")])
     
     init(serviceManager: ListServiceManager) {
         self.serviceManager = serviceManager
@@ -42,6 +61,14 @@ class MovieListViewModel {
                 case .failure(_): self.moviePublisher.value = nil
             }
         }
+    }
+    
+    func updateColletionList(closure: @escaping (_ models: [MovieListCellViewModel]?) ->()){
+        
+        self.moviePublisher.receive(on: DispatchQueue.main)
+            .sink(receiveValue: { (list) in
+                closure(list)
+            }).store(in: &cancelable)
     }
     
     deinit {

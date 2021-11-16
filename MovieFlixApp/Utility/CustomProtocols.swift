@@ -39,3 +39,7 @@ extension ServiceProtocol{
         
     }
 }
+
+protocol ImageReloadProtocol {
+    func reloadImage()
+} 

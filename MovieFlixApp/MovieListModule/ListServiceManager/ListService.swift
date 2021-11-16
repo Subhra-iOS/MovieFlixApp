@@ -17,7 +17,8 @@ extension ListService: ServiceProtocol{
     var serviceUrl: String? {
         switch self {
             case .url(let apiKey):
-                return self.generateQueryString(baseUrl: API.Service.movies_baseUrl, parameters: [API.URLKeys.apiKey.rawValue : apiKey])
+                let listUrl = API.Service.movies_baseUrl + "now_playing"
+                return self.generateQueryString(baseUrl: listUrl, parameters: [API.URLKeys.apiKey.rawValue : apiKey])
         }
     }
 

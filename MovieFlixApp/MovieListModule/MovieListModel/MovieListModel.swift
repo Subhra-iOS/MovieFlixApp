@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum MovieType: Int{
+    case average
+    case popular
+}
+
 struct MovieList: Decodable {
     let total_pages: Double
     let total_results: Double
@@ -23,7 +28,7 @@ struct Dates: Decodable {
 struct MovieElement: Decodable {
     let adult: Bool
     let backdrop_path: String
-    let id: Double
+    let id: Int
     let original_language: String
     let original_title : String
     let overview : String
@@ -35,8 +40,8 @@ struct MovieElement: Decodable {
     let vote_average : Double
     let vote_count : Double
     
-    var mostPopular: Bool{
-        return vote_average > 7
+    var mostPopular: MovieType{
+        return vote_average > 7 ? .popular : .average
     }
     var backdropImageUrl: String{
         return API.Image.backdrop_baseUrl + self.backdrop_path

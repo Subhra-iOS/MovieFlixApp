@@ -23,7 +23,10 @@ struct ListServiceManager {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
+        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 120)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let data = data,
                   error == nil else {
@@ -39,7 +42,7 @@ struct ListServiceManager {
                 completion(.failure(.invalid))
             }
             
-        }
+        }.resume()
         
     }
 }
