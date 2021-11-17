@@ -28,6 +28,8 @@ class DetailsCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
             self.releaseDateLabel.text = cellViewModel?.releaseDate
             self.ratingView.rating = cellViewModel?.vote_average ?? 0.0
             self.descriptionLabel.text = cellViewModel?.description
+            self.cellIdentifier = String(cellViewModel?.movieID ?? 0)
+            self.url = cellViewModel?.backdropImageUrl
             if let model = cellViewModel{
                 self.fileStorePath = self.storePath(model)
             }
