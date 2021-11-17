@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchView: SearchView!
     @IBOutlet weak var moviesColletionView: UICollectionView!
     
-    private var viewModel: MovieListViewModel?
+    private var viewModel: MovieListViewModel!
     private(set) var movieList: [MovieListCellViewModel]?
     private(set)var tempSearchArray: [MovieListCellViewModel]?
     
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
 
     private func loadViewModel(){
         self.viewModel = MovieListViewModel(serviceManager: ListServiceManager(apiKey: API.Key.api_Key))
-        self.viewModel?.updateColletionList(closure: { [weak self] (models) in
+        self.viewModel.updateColletionList(closure: { [weak self] (models) in
             guard let weakSelf = self else {
                 return
             }
