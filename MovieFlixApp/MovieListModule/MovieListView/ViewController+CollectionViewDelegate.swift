@@ -20,12 +20,21 @@ extension ViewController: UICollectionViewDelegate{
             let model: MovieListCellViewModel = itemList[indexPath.item]
             print("\(model.title)")
             
+            self.navigateToMovieDetails(for: model)
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath){
         
+    }
+    
+    private func navigateToMovieDetails(for model: MovieListCellViewModel){
+        
+        let movieDescriptionModel: MovieDetailsModel = MovieDetailsModel(movieID: model.movieId, title: model.title, releaseDate: model.releaseDate, mostPopular: model.mostPopular, backdropImageUrl: model.backdropImageUrl, posterImageUrl: model.posterImageUrl, description: model.overview, vote_average: model.vote_average, vote_count: model.vote_count, original_language: model.original_language)
+        
+        let detailsVC: MovieDetailsViewController = Controllerfactory.generateMovieDetailsController(for: movieDescriptionModel)
+        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
     
 }

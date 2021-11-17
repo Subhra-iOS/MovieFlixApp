@@ -33,14 +33,14 @@ extension ViewController: UICollectionViewDataSource {
                 case .popular:
                     if let cell : BackdropCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: backdropCellIdentifier, for: indexPath) as? BackdropCollectionViewCell {
                         
-                        cell.cellModel = movie
+                        cell.popularMovieCellViewModel = movie
                         cell.reloadImage()
                         return cell
                     }
                 case .average:
                     if let cell : PosterCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: posterCellIdentifier, for: indexPath) as? PosterCollectionViewCell {
                         
-                        cell.cellModel = movie
+                        cell.avgMovieCellViewModel = movie
                         cell.reloadImage()
                         return cell
                     }
