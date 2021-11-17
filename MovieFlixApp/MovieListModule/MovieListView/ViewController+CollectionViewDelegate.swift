@@ -33,7 +33,7 @@ extension ViewController: UICollectionViewDelegate{
         
         let movieDescriptionModel: MovieDetailsModel = MovieDetailsModel(movieID: model.movieId, title: model.title, releaseDate: model.releaseDate, mostPopular: model.mostPopular, backdropImageUrl: model.backdropImageUrl, posterImageUrl: model.posterImageUrl, description: model.overview, vote_average: model.vote_average, vote_count: model.vote_count, original_language: model.original_language)
         
-        let detailsVC: MovieDetailsViewController = Controllerfactory.generateMovieDetailsController(for: movieDescriptionModel)
+        let detailsVC: MovieDetailsViewController = ControllerFactory.generateMovieDetailsController(for: movieDescriptionModel)
         self.navigationController?.pushViewController(detailsVC, animated: true)
     }
     

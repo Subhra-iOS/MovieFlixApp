@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Controllerfactory {
+struct ControllerFactory {
     static private var storyboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
