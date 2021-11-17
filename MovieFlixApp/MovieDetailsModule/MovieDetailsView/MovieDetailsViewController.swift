@@ -12,12 +12,14 @@ let detailsCollectionViewCell = "DetailsCollectionViewCell"
 class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var movieDetailsCollectionView: UICollectionView!
-    private(set) var movieDesModel: MovieDetailsModel?
+   
+    private(set) var detailsCellViewModel: MovieDetailsCellViewModel?
+    private var viewModel: MovieDetailsViewModel!
     
     required init?(coder: NSCoder,
-                   movie: MovieDetailsModel?) {
+                   movie: MovieDetailsModel) {
         super.init(coder: coder)
-        self.movieDesModel = movie
+        self.loadDetailsViewModel(for: movie)
     }
     
     required init?(coder: NSCoder) {
@@ -28,12 +30,21 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         self.registerDetailsColletionViewCell()
         self.detailsCollectionViewLayoutSetup()
+        
     }
     
     private func registerDetailsColletionViewCell(){
         
         self.movieDetailsCollectionView.register(UINib(nibName: "DetailsCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: detailsCollectionViewCell)
         
+    }
+    
+    private func loadDetailsViewModel(for item: MovieDetailsModel){
+        self.viewModel = MovieDetailsViewModel(movie: item)
+        self.viewModel.loadDetails { (model) in
+            guard model.movieID > 0 else{ return }
+            self.detailsCellViewModel = model
+        }
     }
     
 
