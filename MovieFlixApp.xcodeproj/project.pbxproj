@@ -112,6 +112,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A44090A2744BC2900857757 /* MovieDetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				2A44090D2744BC6400857757 /* MovieDetailsModel */,
+				2A44090C2744BC5800857757 /* MovieDetailsViewModel */,
+				2A44090B2744BC4D00857757 /* MovieDetailsView */,
+			);
+			path = MovieDetailsModule;
+			sourceTree = "<group>";
+		};
+		2A44090B2744BC4D00857757 /* MovieDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieDetailsView;
+			sourceTree = "<group>";
+		};
+		2A44090C2744BC5800857757 /* MovieDetailsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieDetailsViewModel;
+			sourceTree = "<group>";
+		};
+		2A44090D2744BC6400857757 /* MovieDetailsModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieDetailsModel;
+			sourceTree = "<group>";
+		};
 		2A7091D5274392500069706B /* FileDownloader */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +178,7 @@
 				2A7AB7532742B6670053941E /* Utility */,
 				2A7AB7652742B9040053941E /* SearchModule */,
 				2A7AB73F2742A6FE0053941E /* MovieListModule */,
+				2A44090A2744BC2900857757 /* MovieDetailsModule */,
 				2A7AB73E2742A6DD0053941E /* AppDelegate */,
 				2A7AB70E2742A6050053941E /* Main.storyboard */,
 				2A7AB7112742A6080053941E /* Assets.xcassets */,
