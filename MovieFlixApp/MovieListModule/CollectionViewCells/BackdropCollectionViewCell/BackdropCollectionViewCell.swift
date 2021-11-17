@@ -10,8 +10,9 @@ import UIKit
 class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
 
     
-    @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var backdropImgActivity: UIActivityIndicatorView!
+    @IBOutlet weak private var backdropContainerView: UIView!
+    @IBOutlet weak private var backdropImageView: UIImageView!
+    @IBOutlet weak private var backdropImgActivity: UIActivityIndicatorView!
     
     private var cellIdentifier: String!
     private var url: String?
@@ -23,6 +24,7 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.backdropImageView.layer.cornerRadius = 8
         self.backdropImageView.clipsToBounds = true
         self.backdropImageView.contentMode = .scaleAspectFill
+        self.backdropContainerView.layer.cornerRadius = 8
     }
     
     var popularMovieCellViewModel: MovieListCellViewModel?{

@@ -10,6 +10,7 @@ import Cosmos
 
 class DetailsCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
     
+    @IBOutlet weak private var detailsContainerView: UIView!
     @IBOutlet weak private var releaseDateLabel: UILabel!
     @IBOutlet weak private var ratingView: CosmosView!
     @IBOutlet weak private var movieImgView: UIImageView!
@@ -25,7 +26,7 @@ class DetailsCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         
         didSet{
             self.titleLabel.text = cellViewModel?.title
-            self.releaseDateLabel.text = cellViewModel?.releaseDate
+            self.releaseDateLabel.text = String(format: "Release Date: %@", arguments: [cellViewModel?.releaseDate ?? ""])
             self.ratingView.rating = cellViewModel?.vote_average ?? 0.0
             self.descriptionLabel.text = cellViewModel?.description
             self.cellIdentifier = String(cellViewModel?.movieID ?? 0)
@@ -41,6 +42,7 @@ class DetailsCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.detailsContainerView.layer.cornerRadius = 8
     }
     
     private let storePath:(MovieDetailsCellViewModel) -> String = { model in

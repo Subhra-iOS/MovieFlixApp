@@ -8,14 +8,19 @@
 import Foundation
 import UIKit
 
-extension MovieDetailsViewController {
+extension MovieDetailsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        
+        if let _: MovieDetailsModel = self.movieDesModel{
+            return 1
+        }else{
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{

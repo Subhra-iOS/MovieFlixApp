@@ -55,6 +55,7 @@
             </constraints>
             <size key="customSize" width="377" height="202"/>
             <connections>
+                <outlet property="backdropContainerView" destination="FAE-Y5-9C3" id="yxH-dn-BlS"/>
                 <outlet property="backdropImageView" destination="mak-f0-8eT" id="Enf-rp-Tlc"/>
                 <outlet property="backdropImgActivity" destination="Y2c-xR-MaA" id="zne-op-CMQ"/>
             </connections>

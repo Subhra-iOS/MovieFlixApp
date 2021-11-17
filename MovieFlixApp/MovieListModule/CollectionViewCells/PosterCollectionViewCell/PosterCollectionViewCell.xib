@@ -102,6 +102,7 @@
                 <outlet property="movieDetails" destination="Bb8-8d-MuN" id="jqX-Fb-NVl"/>
                 <outlet property="movieTitle" destination="EB3-VO-cl4" id="Q6m-8G-EwO"/>
                 <outlet property="posterActivity" destination="gK4-J1-y52" id="wrM-d0-krX"/>
+                <outlet property="posterContainerView" destination="bv3-Pc-LST" id="yXm-Q3-Ln8"/>
                 <outlet property="posterImageView" destination="Jrc-0m-E9y" id="0dl-7f-XwS"/>
             </connections>
             <point key="canvasLocation" x="357.47663551401865" y="182.39740820734343"/>

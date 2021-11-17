@@ -11,10 +11,11 @@ import Combine
 class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
 
     
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var posterActivity: UIActivityIndicatorView!
-    @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var movieDetails: UILabel!
+    @IBOutlet weak private var posterContainerView: UIView!
+    @IBOutlet weak private var posterImageView: UIImageView!
+    @IBOutlet weak private var posterActivity: UIActivityIndicatorView!
+    @IBOutlet weak private var movieTitle: UILabel!
+    @IBOutlet weak private var movieDetails: UILabel!
     
     private var cellIdentifier: String!
     private var url: String?
@@ -28,6 +29,7 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.posterImageView.layer.cornerRadius = 8
         self.posterImageView.clipsToBounds = true
         self.posterImageView.contentMode = .scaleAspectFill
+        self.posterContainerView.layer.cornerRadius = 8
     }
     
     var avgMovieCellViewModel: MovieListCellViewModel?{
