@@ -16,7 +16,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if let _: MovieDetailsModel = self.movieDesModel{
+        if let _: MovieDetailsCellViewModel = self.detailsCellViewModel{
             return 1
         }else{
             return 0
@@ -24,11 +24,10 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        if let movie: MovieDetailsModel = self.movieDesModel,
+        if let movie: MovieDetailsCellViewModel = self.detailsCellViewModel,
            let cell : DetailsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: detailsCollectionViewCell, for: indexPath) as? DetailsCollectionViewCell{
             
-            cell.cellViewModel = MovieDetailsCellViewModel(movieID: movie.movieID, title: movie.title, releaseDate: movie.releaseDate, mostPopular: movie.mostPopular, backdropImageUrl: movie.backdropImageUrl, posterImageUrl: movie.posterImageUrl, description: movie.description, vote_average: movie.vote_average, vote_count: movie.vote_count, original_language: movie.original_language)
-            
+            cell.cellViewModel = movie
             cell.reloadImage()
             
             return cell
