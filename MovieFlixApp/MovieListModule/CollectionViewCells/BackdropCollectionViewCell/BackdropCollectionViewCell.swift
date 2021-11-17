@@ -10,8 +10,9 @@ import UIKit
 class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
 
     
-    @IBOutlet weak var backdropImageView: UIImageView!
-    @IBOutlet weak var backdropImgActivity: UIActivityIndicatorView!
+    @IBOutlet weak private var backdropContainerView: UIView!
+    @IBOutlet weak private var backdropImageView: UIImageView!
+    @IBOutlet weak private var backdropImgActivity: UIActivityIndicatorView!
     
     private var cellIdentifier: String!
     private var url: String?
@@ -23,13 +24,14 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.backdropImageView.layer.cornerRadius = 8
         self.backdropImageView.clipsToBounds = true
         self.backdropImageView.contentMode = .scaleAspectFill
+        self.backdropContainerView.layer.cornerRadius = 8
     }
     
-    var cellModel: MovieListCellViewModel?{
+    var popularMovieCellViewModel: MovieListCellViewModel?{
         didSet{
-            self.cellIdentifier = String(cellModel?.movieId ?? 0)
-            self.url = cellModel?.backdropImageUrl
-            if let model = cellModel{
+            self.cellIdentifier = String(popularMovieCellViewModel?.movieId ?? 0)
+            self.url = popularMovieCellViewModel?.backdropImageUrl
+            if let model = popularMovieCellViewModel{
                 self.fileStorePath = self.storePath(model)
             }
         }
@@ -50,7 +52,7 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.backdropImageView.image = nil
         self.backdropImageView.backgroundColor = UIColor.black
         
-        guard let _cellViewModel = self.cellModel,
+        guard let _cellViewModel = self.popularMovieCellViewModel,
               _cellViewModel.movieId > 0 ,
               self.fileStorePath.count > 0 else { return }
        
@@ -59,9 +61,10 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         }
         
         self.backdropImgActivity.startAnimating()
-        self.cellModel?.downloadRemoteFileWith(imageUrl: url,
-                                               path: self.fileStorePath,
-                                               fileId: self.cellIdentifier) { [weak self] (state, fileStorePath, taskIdentifier) in
+        _cellViewModel.downloadRemoteFileWith(shared: MFCommon(),
+                                              imageUrl: url,
+                                              path: self.fileStorePath,
+                                              fileId: self.cellIdentifier) { [weak self] (state, fileStorePath, taskIdentifier) in
             
             guard  let weakSelf = self, let currentID: String = taskIdentifier,  weakSelf.cellIdentifier.isEqual(currentID) else {
                 return

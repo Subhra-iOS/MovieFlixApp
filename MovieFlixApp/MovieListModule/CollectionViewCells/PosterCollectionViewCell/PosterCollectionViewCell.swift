@@ -11,10 +11,11 @@ import Combine
 class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
 
     
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var posterActivity: UIActivityIndicatorView!
-    @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var movieDetails: UILabel!
+    @IBOutlet weak private var posterContainerView: UIView!
+    @IBOutlet weak private var posterImageView: UIImageView!
+    @IBOutlet weak private var posterActivity: UIActivityIndicatorView!
+    @IBOutlet weak private var movieTitle: UILabel!
+    @IBOutlet weak private var movieDetails: UILabel!
     
     private var cellIdentifier: String!
     private var url: String?
@@ -28,15 +29,16 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.posterImageView.layer.cornerRadius = 8
         self.posterImageView.clipsToBounds = true
         self.posterImageView.contentMode = .scaleAspectFill
+        self.posterContainerView.layer.cornerRadius = 8
     }
     
-    var cellModel: MovieListCellViewModel?{
+    var avgMovieCellViewModel: MovieListCellViewModel?{
         didSet{
-            self.movieTitle.text = cellModel?.title
-            self.movieDetails.text = cellModel?.overview
-            self.cellIdentifier = String(cellModel?.movieId ?? 0)
-            self.url = cellModel?.posterImageUrl
-            if let model = cellModel{
+            self.movieTitle.text = avgMovieCellViewModel?.title
+            self.movieDetails.text = avgMovieCellViewModel?.overview
+            self.cellIdentifier = String(avgMovieCellViewModel?.movieId ?? 0)
+            self.url = avgMovieCellViewModel?.posterImageUrl
+            if let model = avgMovieCellViewModel{
                 self.fileStorePath = self.storePath(model)
             }
         }
@@ -57,7 +59,7 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.posterImageView.image = nil
         self.posterImageView.backgroundColor = UIColor.black
         
-        guard let _cellViewModel = self.cellModel,
+        guard let _cellViewModel = self.avgMovieCellViewModel,
               _cellViewModel.movieId > 0 ,
               self.fileStorePath.count > 0 else { return }
         
@@ -68,9 +70,10 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
        // print("\(String(describing: self.fileStorePath))")
         
         self.posterActivity.startAnimating()
-        self.cellModel?.downloadRemoteFileWith(imageUrl: url,
-                                                   path: self.fileStorePath,
-                                                   fileId: self.cellIdentifier) { [weak self] (state, fileStorePath, taskIdentifier) in
+        _cellViewModel.downloadRemoteFileWith(shared: MFCommon(),
+                                              imageUrl: url,
+                                              path: self.fileStorePath,
+                                              fileId: self.cellIdentifier) { [weak self] (state, fileStorePath, taskIdentifier) in
             
             guard  let weakSelf = self, let currentID: String = taskIdentifier,  weakSelf.cellIdentifier.isEqual(currentID) else {
                 return

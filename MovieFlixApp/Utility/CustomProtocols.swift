@@ -43,3 +43,35 @@ extension ServiceProtocol{
 protocol ImageReloadProtocol {
     func reloadImage()
 } 
+
+protocol ImageDownloaderProtocol {
+    func downloadRemoteFileWith(shared: MFCommon,
+                                imageUrl: String,
+                                path: String,
+                                fileId: String,
+                                completion: @escaping (_ status: Bool,
+                                                       _ filePath: String?,
+                                                       _ taskIdentifier: String?) -> Void) -> Void
+}
+
+extension ImageDownloaderProtocol{
+    
+    func downloadRemoteFileWith(shared: MFCommon,
+                                imageUrl: String,
+                                path: String,
+                                fileId: String,
+                                completion: @escaping (_ status: Bool,
+                                                       _ filePath: String?,
+                                                       _ taskIdentifier: String?) -> Void) -> Void{
+        
+        if shared.isFileExistAt(path){
+            completion(true, path, fileId)
+        }else{
+            let fileDownloader: FileDownloader = FileDownloader(url: imageUrl, filePath: path, taskIdentifier: fileId)
+            fileDownloader.downloadFile()
+            fileDownloader.operationStateHandler = { ( status,  fileStorePath,  _identifier) in
+                completion(status, fileStorePath, _identifier)
+            }
+        }
+    }
+}

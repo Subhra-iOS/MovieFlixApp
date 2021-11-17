@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct MovieListCellViewModel {
+struct MovieListCellViewModel: ImageDownloaderProtocol {
     let movieId: Int
     let mostPopular: MovieType
     let backdropImageUrl: String
@@ -19,24 +19,6 @@ struct MovieListCellViewModel {
     let vote_average: Double
     let vote_count: Double
     let original_language: String
-    
-    func downloadRemoteFileWith(imageUrl: String,
-                                path: String,
-                                fileId: String,
-                                completion: @escaping (_ status: Bool,
-                                                       _ filePath: String?,
-                                                       _ taskIdentifier: String?) -> Void) -> Void{
-        
-        if MFCommon().isFileExistAt(path){
-            completion(true, path, fileId)
-        }else{
-            let fileDownloader: FileDownloader = FileDownloader(url: imageUrl, filePath: path, taskIdentifier: fileId)
-            fileDownloader.downloadFile()
-            fileDownloader.operationStateHandler = { ( status,  fileStorePath,  _identifier) in
-                completion(status, fileStorePath, _identifier)
-            }
-        }
-    }
     
 }
 
