@@ -114,35 +114,40 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gwt-1z-19a">
-                                <rect key="frame" x="5" y="314" width="406" height="286"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="BFl-2z-pXZ">
+                                <rect key="frame" x="5" y="316" width="406" height="284"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3mu-Yh-923">
+                                        <rect key="frame" x="0.0" y="0.0" width="406" height="100.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Uev-ZF-dSi" firstAttribute="trailing" secondItem="YPA-C1-fWO" secondAttribute="trailing" id="98D-9q-vOl"/>
-                            <constraint firstItem="Gwt-1z-19a" firstAttribute="leading" secondItem="4YD-s4-Ruy" secondAttribute="leading" constant="5" id="ARb-qH-EwN"/>
                             <constraint firstItem="pRg-NC-kAm" firstAttribute="leading" secondItem="4YD-s4-Ruy" secondAttribute="leading" constant="5" id="D3t-Ou-fe7"/>
-                            <constraint firstAttribute="bottom" secondItem="Gwt-1z-19a" secondAttribute="bottom" constant="10" id="D5d-g4-CAr"/>
                             <constraint firstItem="D2s-8z-bQO" firstAttribute="top" secondItem="pRg-NC-kAm" secondAttribute="bottom" constant="10" id="EkG-JH-Zif"/>
-                            <constraint firstItem="Gwt-1z-19a" firstAttribute="top" secondItem="pRg-NC-kAm" secondAttribute="bottom" constant="129" id="GSz-ew-0Ct"/>
+                            <constraint firstAttribute="bottom" secondItem="BFl-2z-pXZ" secondAttribute="bottom" constant="10" id="J4Q-fp-PGW"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="PN3-yk-lFc"/>
-                            <constraint firstAttribute="trailing" secondItem="Gwt-1z-19a" secondAttribute="trailing" constant="5" id="SYY-ZN-52W"/>
+                            <constraint firstItem="BFl-2z-pXZ" firstAttribute="trailing" secondItem="Uev-ZF-dSi" secondAttribute="trailing" id="QQU-3t-gfo"/>
                             <constraint firstItem="D2s-8z-bQO" firstAttribute="trailing" secondItem="8Vk-Nq-lfr" secondAttribute="trailing" id="UdS-lp-hnA"/>
                             <constraint firstAttribute="trailing" secondItem="pRg-NC-kAm" secondAttribute="trailing" constant="5" id="WXj-oh-NjJ"/>
                             <constraint firstItem="Uev-ZF-dSi" firstAttribute="leading" secondItem="YPA-C1-fWO" secondAttribute="leading" id="bqc-0O-YON"/>
                             <constraint firstItem="Uev-ZF-dSi" firstAttribute="top" secondItem="YPA-C1-fWO" secondAttribute="bottom" constant="10" id="cfN-fk-hAx"/>
-                            <constraint firstItem="Gwt-1z-19a" firstAttribute="leading" secondItem="Uev-ZF-dSi" secondAttribute="leading" id="eQ4-yC-1zd"/>
+                            <constraint firstItem="BFl-2z-pXZ" firstAttribute="leading" secondItem="Uev-ZF-dSi" secondAttribute="leading" id="e31-SC-j7u"/>
                             <constraint firstItem="YPA-C1-fWO" firstAttribute="leading" secondItem="D2s-8z-bQO" secondAttribute="leading" id="iE8-Cb-WOD"/>
                             <constraint firstItem="YPA-C1-fWO" firstAttribute="top" secondItem="D2s-8z-bQO" secondAttribute="bottom" constant="10" id="kTP-MI-xLO"/>
                             <constraint firstItem="pRg-NC-kAm" firstAttribute="top" secondItem="4YD-s4-Ruy" secondAttribute="top" constant="5" id="nKh-n9-qhn"/>
                             <constraint firstItem="D2s-8z-bQO" firstAttribute="leading" secondItem="8Vk-Nq-lfr" secondAttribute="leading" id="njW-kN-93E"/>
+                            <constraint firstItem="BFl-2z-pXZ" firstAttribute="top" secondItem="Uev-ZF-dSi" secondAttribute="bottom" constant="10" id="uSj-G8-dVN"/>
                             <constraint firstItem="YPA-C1-fWO" firstAttribute="trailing" secondItem="D2s-8z-bQO" secondAttribute="trailing" id="wLx-gd-Rg0"/>
-                            <constraint firstItem="Gwt-1z-19a" firstAttribute="trailing" secondItem="Uev-ZF-dSi" secondAttribute="trailing" id="wdq-dS-3gA"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -157,7 +162,7 @@
             <size key="customSize" width="436" height="630"/>
             <connections>
                 <outlet property="activityView" destination="XqI-Ey-GYu" id="OhL-H7-vwI"/>
-                <outlet property="descriptionLabel" destination="Gwt-1z-19a" id="idh-bN-LUn"/>
+                <outlet property="descriptionLabel" destination="3mu-Yh-923" id="YS9-mH-dSs"/>
                 <outlet property="detailsContainerView" destination="4YD-s4-Ruy" id="9jp-Jv-cCf"/>
                 <outlet property="movieImgView" destination="8Vk-Nq-lfr" id="fbO-jh-BKv"/>
                 <outlet property="ratingView" destination="Uev-ZF-dSi" id="ACW-3b-5DR"/>
