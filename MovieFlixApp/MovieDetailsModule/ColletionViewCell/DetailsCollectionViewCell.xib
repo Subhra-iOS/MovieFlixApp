@@ -130,7 +130,6 @@
                             <constraint firstAttribute="bottom" secondItem="Gwt-1z-19a" secondAttribute="bottom" constant="10" id="D5d-g4-CAr"/>
                             <constraint firstItem="D2s-8z-bQO" firstAttribute="top" secondItem="pRg-NC-kAm" secondAttribute="bottom" constant="10" id="EkG-JH-Zif"/>
                             <constraint firstItem="Gwt-1z-19a" firstAttribute="top" secondItem="pRg-NC-kAm" secondAttribute="bottom" constant="129" id="GSz-ew-0Ct"/>
-                            <constraint firstAttribute="bottom" secondItem="Gwt-1z-19a" secondAttribute="bottom" constant="10" id="IrO-Bp-TXR"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="PN3-yk-lFc"/>
                             <constraint firstAttribute="trailing" secondItem="Gwt-1z-19a" secondAttribute="trailing" constant="5" id="SYY-ZN-52W"/>
                             <constraint firstItem="D2s-8z-bQO" firstAttribute="trailing" secondItem="8Vk-Nq-lfr" secondAttribute="trailing" id="UdS-lp-hnA"/>
@@ -168,6 +167,11 @@
             <point key="canvasLocation" x="420.28985507246381" y="223.66071428571428"/>
         </collectionViewCell>
     </objects>
+    <designables>
+        <designable name="Uev-ZF-dSi">
+            <size key="intrinsicContentSize" width="309" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
