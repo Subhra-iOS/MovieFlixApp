@@ -40,24 +40,13 @@ class SearchView: UISearchBar {
             return
         }
         
-        let result = list.filter { (model) -> Bool in
-            
-            return foundSearch(movieInfo, model)
-        }
+        let result = list.filter({$0.title.contains(movieInfo) || $0.description.contains(movieInfo)})
         if result.count > 0 {
             self.searchDelegate?.search(result, isSearchOn: true)
         }else{
             self.searchDelegate?.search([], isSearchOn: true)
         }
     }
-    
-    private func foundSearch(_ txt: String,_ model: SearchMovieModel) -> Bool{
-        
-        let titleMatch = model.title.range(of: txt, options: [.caseInsensitive, .literal])
-        let descriptionMatch = model.description.range(of: txt, options: [.caseInsensitive, .literal])
-       
-        return (titleMatch != nil || descriptionMatch != nil)
-        
-    }
+
 }
 

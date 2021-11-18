@@ -29,6 +29,7 @@ extension ViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         self.searchView.serach(movieInfo: searchBar.text ?? "")
+        self.searchView.resignFirstResponder()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
