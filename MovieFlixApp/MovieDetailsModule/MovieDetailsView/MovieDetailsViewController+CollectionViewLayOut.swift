@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK:--------UICollectionView FlowLayout---------//
 extension MovieDetailsViewController{
     
     func detailsCollectionViewLayoutSetup(){

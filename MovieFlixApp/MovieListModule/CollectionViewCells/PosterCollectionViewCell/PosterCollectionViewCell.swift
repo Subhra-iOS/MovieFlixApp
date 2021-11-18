@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
+class PosterCollectionViewCell: UICollectionViewCell {
 
     
     @IBOutlet weak private var posterContainerView: UIView!
@@ -17,11 +17,14 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
     @IBOutlet weak private var movieTitle: UILabel!
     @IBOutlet weak private var movieDetails: UILabel!
     
+    @IBOutlet weak private var posterMovieDeleteBtn: UIButton!
+    
+    
     private var cellIdentifier: String!
     private var url: String?
     private var fileStorePath: String!
     
-   // private(set) var publisher = PassthroughSubject<String, Never>()
+    private(set) var averagePublisher = PassthroughSubject<MovieListCellViewModel, Never>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +33,7 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.posterImageView.clipsToBounds = true
         self.posterImageView.contentMode = .scaleAspectFill
         self.posterContainerView.layer.cornerRadius = 8
+        self.posterMovieDeleteBtn.isHidden = true
     }
     
     var avgMovieCellViewModel: MovieListCellViewModel?{
@@ -38,11 +42,22 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
             self.movieDetails.text = avgMovieCellViewModel?.overview
             self.cellIdentifier = String(avgMovieCellViewModel?.movieId ?? 0)
             self.url = avgMovieCellViewModel?.posterImageUrl
+            self.posterMovieDeleteBtn.isHidden = avgMovieCellViewModel?.isDeleteHidden ?? true
             if let model = avgMovieCellViewModel{
                 self.fileStorePath = self.storePath(model)
             }
         }
     }
+    
+    //MARK:--------Delete Movie Cell--------//
+    @IBAction func didTapOnPopularMovieElementCell(_ sender: Any) {
+        
+        if let cellModel: MovieListCellViewModel = self.avgMovieCellViewModel {
+            self.averagePublisher.send(cellModel)
+        }
+        
+    }
+    
     
     private let storePath:(MovieListCellViewModel) -> String = { model in
         
@@ -54,6 +69,20 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         let _fileName: String = model.posterImageUrl.fileName()
         return MFCommon().fetchFileStorePath(fileId: String(model.movieId), fileExtension: _fileExtension, fileName: _fileName)
     }
+    
+//    func setEditMode(on: Bool){
+//        self.posterMovieDeleteBtn.isHidden = !on
+//    }
+//
+//    override var isSelected: Bool {
+//        didSet {
+//            posterMovieDeleteBtn.isHidden = !isSelected
+//        }
+//    }
+
+}
+
+extension PosterCollectionViewCell : ImageReloadProtocol{
     
     func reloadImage(){
         self.posterImageView.image = nil
@@ -67,7 +96,7 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
             return
         }
         
-       // print("\(String(describing: self.fileStorePath))")
+        // print("\(String(describing: self.fileStorePath))")
         
         self.posterActivity.startAnimating()
         _cellViewModel.downloadRemoteFileWith(shared: MFCommon(),
@@ -92,6 +121,6 @@ class PosterCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
             
         }
     }
-
+    
 }
 

@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import Combine
 
-class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
+class BackdropCollectionViewCell: UICollectionViewCell {
 
     
     @IBOutlet weak private var backdropContainerView: UIView!
     @IBOutlet weak private var backdropImageView: UIImageView!
     @IBOutlet weak private var backdropImgActivity: UIActivityIndicatorView!
+    
+    @IBOutlet weak private var popularMovieDeleteBtn: UIButton!
+    private(set) var popularPublisher = PassthroughSubject<MovieListCellViewModel, Never>()
     
     private var cellIdentifier: String!
     private var url: String?
@@ -25,12 +29,14 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         self.backdropImageView.clipsToBounds = true
         self.backdropImageView.contentMode = .scaleAspectFill
         self.backdropContainerView.layer.cornerRadius = 8
+        self.popularMovieDeleteBtn.isHidden = true
     }
     
     var popularMovieCellViewModel: MovieListCellViewModel?{
         didSet{
             self.cellIdentifier = String(popularMovieCellViewModel?.movieId ?? 0)
             self.url = popularMovieCellViewModel?.backdropImageUrl
+            self.popularMovieDeleteBtn.isHidden = popularMovieCellViewModel?.isDeleteHidden ?? true
             if let model = popularMovieCellViewModel{
                 self.fileStorePath = self.storePath(model)
             }
@@ -47,6 +53,27 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         return MFCommon().fetchFileStorePath(fileId: String(model.movieId), fileExtension: _fileExtension, fileName: _fileName)
     }
     
+    //MARK:--------Delete Movie Cell--------//
+    @IBAction func didTapToDeletePopularMovieElementCell(_ sender: Any) {
+        if let cellModel: MovieListCellViewModel = popularMovieCellViewModel{
+            self.popularPublisher.send(cellModel)
+        }
+    }
+    
+//    func setEditMode(on: Bool){
+//        self.popularMovieDeleteBtn.isHidden = !on
+//    }
+//
+//    override var isSelected: Bool {
+//        didSet {
+//            popularMovieDeleteBtn.isHidden = !isSelected
+//        }
+//    }
+
+}
+
+extension BackdropCollectionViewCell: ImageReloadProtocol{
+    
     func reloadImage(){
         
         self.backdropImageView.image = nil
@@ -55,7 +82,7 @@ class BackdropCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         guard let _cellViewModel = self.popularMovieCellViewModel,
               _cellViewModel.movieId > 0 ,
               self.fileStorePath.count > 0 else { return }
-       
+        
         guard let url = self.url else {
             return
         }

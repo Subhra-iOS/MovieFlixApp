@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK:--------UICollectionView Delegate functions-------//
 extension ViewController: UICollectionViewDelegate{
     
     fileprivate func updateCollectionViewSelectionWith(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
@@ -28,7 +29,7 @@ extension ViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath){
         
     }
-    
+    //MARK:-------Navigate to details view from selected movie item from list-----//
     private func navigateToMovieDetails(for model: MovieListCellViewModel){
         
         let movieDescriptionModel: MovieDetailsModel = MovieDetailsModel(movieID: model.movieId, title: model.title, releaseDate: model.releaseDate, mostPopular: model.mostPopular, backdropImageUrl: model.backdropImageUrl, posterImageUrl: model.posterImageUrl, description: model.overview, vote_average: model.vote_average, vote_count: model.vote_count, original_language: model.original_language)

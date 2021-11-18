@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//MARK:--------UICollectionView DataSource functions-------//
 extension ViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
@@ -34,6 +35,13 @@ extension ViewController: UICollectionViewDataSource {
                         
                         cell.popularMovieCellViewModel = movie
                         cell.reloadImage()
+                        cell.popularPublisher.sink { [weak self] (cellModel) in
+                            //print("\(cellModel.movieId)")
+                            //print("\(cellModel.title)")
+                            guard let weakSelf = self else{ return }
+                            weakSelf.delete(item: cellModel)
+                            
+                        }.store(in: &obaservers)
                         return cell
                     }
                 case .average:
@@ -41,6 +49,12 @@ extension ViewController: UICollectionViewDataSource {
                         
                         cell.avgMovieCellViewModel = movie
                         cell.reloadImage()
+                        cell.averagePublisher.sink { [weak self] (cellModel) in
+                           // print("\(cellModel.movieId)")
+                            //print("\(cellModel.title)")
+                            guard let weakSelf = self else{ return }
+                            weakSelf.delete(item: cellModel)
+                        }.store(in: &obaservers)
                         return cell
                     }
             }

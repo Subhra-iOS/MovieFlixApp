@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK:------UICollectionView DataSource---------//
 extension MovieDetailsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{

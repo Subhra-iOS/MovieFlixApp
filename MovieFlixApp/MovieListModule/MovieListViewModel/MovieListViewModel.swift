@@ -19,6 +19,7 @@ struct MovieListCellViewModel: ImageDownloaderProtocol {
     let vote_average: Double
     let vote_count: Double
     let original_language: String
+    var isDeleteHidden: Bool = true
     
 }
 
@@ -26,7 +27,7 @@ class MovieListViewModel {
     private let serviceManager: ListServiceManager
     
     private var cancelable: Set<AnyCancellable> = Set<AnyCancellable>()
-    private var moviePublisher = CurrentValueSubject<[MovieListCellViewModel]?, Never>([MovieListCellViewModel(movieId: 0, mostPopular: .average, backdropImageUrl: "", posterImageUrl: "", title: "", overview: "", releaseDate: "", vote_average: 0.0, vote_count: 0.0, original_language: "")])
+    private var moviePublisher = CurrentValueSubject<[MovieListCellViewModel]?, Never>([MovieListCellViewModel(movieId: 0, mostPopular: .average, backdropImageUrl: "", posterImageUrl: "", title: "", overview: "", releaseDate: "", vote_average: 0.0, vote_count: 0.0, original_language: "", isDeleteHidden: true)])
     
     init(serviceManager: ListServiceManager) {
         self.serviceManager = serviceManager
@@ -38,7 +39,7 @@ class MovieListViewModel {
             switch result{
                 case .success(let movies):
                     self.moviePublisher.value = movies.compactMap({ (item) -> MovieListCellViewModel? in
-                        return  MovieListCellViewModel(movieId:item.id, mostPopular: item.mostPopular, backdropImageUrl: item.backdropImageUrl, posterImageUrl: item.posterImageUrl, title: item.original_title, overview: item.overview, releaseDate: item.release_date, vote_average: item.vote_average, vote_count: item.vote_count, original_language: item.original_title)
+                        return  MovieListCellViewModel(movieId:item.id, mostPopular: item.mostPopular, backdropImageUrl: item.backdropImageUrl, posterImageUrl: item.posterImageUrl, title: item.original_title, overview: item.overview, releaseDate: item.release_date, vote_average: item.vote_average, vote_count: item.vote_count, original_language: item.original_title, isDeleteHidden: true)
                     })
                 case .failure(_): self.moviePublisher.value = nil
             }

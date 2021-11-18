@@ -20,7 +20,7 @@ extension ViewController{
     }
 }
 
-
+//MARK:-----UISearchBar Delegate functions---------//
 extension ViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
@@ -38,11 +38,12 @@ extension ViewController: UISearchBarDelegate{
     }
 }
 
+//MARK:------Search result protocol---------//
 extension ViewController: SearchResultProtocol{
     func search(_ result: [SearchMovieModel], isSearchOn: Bool) {
         
         guard isSearchOn else {
-            if let movies = self.tempSearchArray, movies.count > 0{ self.update(list: movies) }
+            if let movies = self.tempSearchArray, movies.count > 0{ self.updateSearch(list: movies) }
             return
         }
         
@@ -52,9 +53,9 @@ extension ViewController: SearchResultProtocol{
             }
             let _cellViewModels: [MovieListCellViewModel] = movies.filter({allMovieIds.contains($0.movieId)})
             
-            self.update(list: _cellViewModels)
+            self.updateSearch(list: _cellViewModels)
         }else{
-            self.update(list: [])
+            self.updateSearch(list: [])
         }
     }
     

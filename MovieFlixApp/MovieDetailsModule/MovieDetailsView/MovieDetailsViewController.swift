@@ -38,7 +38,7 @@ class MovieDetailsViewController: UIViewController {
         self.movieDetailsCollectionView.register(UINib(nibName: "DetailsCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: detailsCollectionViewCell)
         
     }
-    
+    //MARK:------Load details view model----------//
     private func loadDetailsViewModel(for item: MovieDetailsModel){
         self.viewModel = MovieDetailsViewModel(movie: item)
         self.viewModel.loadDetails { (model) in
