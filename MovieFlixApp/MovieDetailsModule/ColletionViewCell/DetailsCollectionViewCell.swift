@@ -8,7 +8,7 @@
 import UIKit
 import Cosmos
 
-class DetailsCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
+class DetailsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak private var detailsContainerView: UIView!
     @IBOutlet weak private var releaseDateLabel: UILabel!
@@ -54,6 +54,10 @@ class DetailsCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
         let _fileName: String = model.backdropImageUrl.fileName()
         return MFCommon().fetchFileStorePath(fileId: String(model.movieID), fileExtension: _fileExtension, fileName: _fileName)
     }
+
+}
+
+extension DetailsCollectionViewCell: ImageReloadProtocol{
     
     func reloadImage(){
         
@@ -91,7 +95,4 @@ class DetailsCollectionViewCell: UICollectionViewCell, ImageReloadProtocol {
             
         }
     }
-
-    
-
 }
