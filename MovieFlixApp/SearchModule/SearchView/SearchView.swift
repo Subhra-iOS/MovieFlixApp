@@ -40,7 +40,9 @@ class SearchView: UISearchBar {
             return
         }
         
-        let result = list.filter({$0.title.contains(movieInfo) || $0.description.contains(movieInfo)})
+        let result = list.filter { (movie) -> Bool in
+            return (movie.title.lowercased().contains(movieInfo.lowercased()) || movie.description.lowercased().contains(movieInfo.lowercased()))
+        }
         if result.count > 0 {
             self.searchDelegate?.search(result, isSearchOn: true)
         }else{
