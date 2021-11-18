@@ -16,12 +16,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if let _: MovieDetailsCellViewModel = self.detailsCellViewModel{
-            return 1
-        }else{
-            return 0
-        }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
