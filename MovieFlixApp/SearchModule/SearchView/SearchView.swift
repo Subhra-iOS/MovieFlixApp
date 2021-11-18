@@ -52,9 +52,12 @@ class SearchView: UISearchBar {
     }
     
     private func foundSearch(_ txt: String,_ model: SearchMovieModel) -> Bool{
-        let capText: String = txt.capitalized
-        let isContain: Bool = model.title.capitalized.contains(capText) || model.description.capitalized.contains(capText)
-        return isContain
+        
+        let titleMatch = model.title.range(of: txt, options: [.caseInsensitive, .literal])
+        let descriptionMatch = model.description.range(of: txt, options: [.caseInsensitive, .literal])
+       
+        return (titleMatch != nil || descriptionMatch != nil)
+        
     }
 }
 
