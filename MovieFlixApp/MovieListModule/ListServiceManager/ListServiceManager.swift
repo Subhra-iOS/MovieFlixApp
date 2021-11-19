@@ -23,7 +23,7 @@ struct ListServiceManager {
             return
         }
         
-        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 120)
+        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in

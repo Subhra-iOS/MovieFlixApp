@@ -22,6 +22,12 @@ class BackdropCollectionViewCell: UICollectionViewCell {
     private var url: String?
     private var fileStorePath: String!
     
+    private var obaservers: [AnyCancellable] = [AnyCancellable]()
+    
+    func storePopular(publisher: AnyCancellable){
+        publisher.store(in: &obaservers)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -60,15 +66,10 @@ class BackdropCollectionViewCell: UICollectionViewCell {
         }
     }
     
-//    func setEditMode(on: Bool){
-//        self.popularMovieDeleteBtn.isHidden = !on
-//    }
-//
-//    override var isSelected: Bool {
-//        didSet {
-//            popularMovieDeleteBtn.isHidden = !isSelected
-//        }
-//    }
+    deinit {
+        obaservers.removeAll()
+        print("BackdropCollectionViewCell deinit")
+    }
 
 }
 

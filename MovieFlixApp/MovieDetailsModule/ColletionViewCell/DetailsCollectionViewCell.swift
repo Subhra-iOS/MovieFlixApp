@@ -43,6 +43,8 @@ class DetailsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         self.detailsContainerView.layer.cornerRadius = 8
+        self.movieImgView.clipsToBounds = true
+        self.movieImgView.contentMode = .scaleAspectFill
     }
     
     private let storePath:(MovieDetailsCellViewModel) -> String = { model in

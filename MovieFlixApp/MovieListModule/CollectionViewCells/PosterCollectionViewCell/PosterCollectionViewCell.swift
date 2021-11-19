@@ -25,6 +25,11 @@ class PosterCollectionViewCell: UICollectionViewCell {
     private var fileStorePath: String!
     
     private(set) var averagePublisher = PassthroughSubject<MovieListCellViewModel, Never>()
+    private var obaservers: [AnyCancellable] = [AnyCancellable]()
+    
+    func storeAvg(publisher: AnyCancellable){
+        publisher.store(in: &obaservers)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,15 +75,10 @@ class PosterCollectionViewCell: UICollectionViewCell {
         return MFCommon().fetchFileStorePath(fileId: String(model.movieId), fileExtension: _fileExtension, fileName: _fileName)
     }
     
-//    func setEditMode(on: Bool){
-//        self.posterMovieDeleteBtn.isHidden = !on
-//    }
-//
-//    override var isSelected: Bool {
-//        didSet {
-//            posterMovieDeleteBtn.isHidden = !isSelected
-//        }
-//    }
+    deinit {
+        obaservers.removeAll()
+        print("PosterCollectionViewCell deinit")
+    }
 
 }
 

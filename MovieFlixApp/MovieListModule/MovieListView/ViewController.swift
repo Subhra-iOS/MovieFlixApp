@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     private var viewModel: MovieListViewModel!
     private(set) var movieList: [MovieListCellViewModel]?
     private(set)var tempSearchArray: [MovieListCellViewModel]?
-    var obaservers: [AnyCancellable] = [AnyCancellable]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +79,7 @@ class ViewController: UIViewController {
     }
     
     deinit {
-        obaservers.removeAll()
         print("ViewController  deinit")
     }
     
-    
-
 }
