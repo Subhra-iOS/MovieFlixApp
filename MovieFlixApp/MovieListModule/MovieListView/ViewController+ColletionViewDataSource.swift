@@ -35,14 +35,14 @@ extension ViewController: UICollectionViewDataSource {
                         
                         cell.popularMovieCellViewModel = movie
                         cell.reloadImage()
-                        let cancelleble = cell.popularPublisher.sink { [weak self] (cellModel) in
+                        cell.popularPublisher.sink { [weak self] (cellModel) in
                             //print("\(cellModel.movieId)")
                             //print("\(cellModel.title)")
                             guard let weakSelf = self else{ return }
                             weakSelf.delete(item: cellModel)
                             
-                        }
-                        cell.storePopular(publisher: cancelleble)
+                        }.store(in: &obaservers)
+                        
                         return cell
                     }
                 case .average:
@@ -50,13 +50,13 @@ extension ViewController: UICollectionViewDataSource {
                         
                         cell.avgMovieCellViewModel = movie
                         cell.reloadImage()
-                        let cancelleble = cell.averagePublisher.sink { [weak self] (cellModel) in
+                        cell.averagePublisher.sink { [weak self] (cellModel) in
                            // print("\(cellModel.movieId)")
                             //print("\(cellModel.title)")
                             guard let weakSelf = self else{ return }
                             weakSelf.delete(item: cellModel)
-                        }
-                        cell.storeAvg(publisher: cancelleble)
+                        }.store(in: &obaservers)
+                        
                         return cell
                     }
             }

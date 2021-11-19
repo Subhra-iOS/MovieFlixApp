@@ -25,11 +25,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
     private var fileStorePath: String!
     
     private(set) var averagePublisher = PassthroughSubject<MovieListCellViewModel, Never>()
-    private var obaservers: [AnyCancellable] = [AnyCancellable]()
     
-    func storeAvg(publisher: AnyCancellable){
-        publisher.store(in: &obaservers)
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -76,7 +72,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
     }
     
     deinit {
-        obaservers.removeAll()
+       
         print("PosterCollectionViewCell deinit")
     }
 

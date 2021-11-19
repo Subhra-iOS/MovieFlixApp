@@ -22,11 +22,6 @@ class BackdropCollectionViewCell: UICollectionViewCell {
     private var url: String?
     private var fileStorePath: String!
     
-    private var obaservers: [AnyCancellable] = [AnyCancellable]()
-    
-    func storePopular(publisher: AnyCancellable){
-        publisher.store(in: &obaservers)
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -67,7 +62,6 @@ class BackdropCollectionViewCell: UICollectionViewCell {
     }
     
     deinit {
-        obaservers.removeAll()
         print("BackdropCollectionViewCell deinit")
     }
 
