@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     
     private func setEditOption(){
         navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem?.tintColor = .label
     }
     
     private func registerColletionViewCells(){

@@ -31,6 +31,17 @@ class MovieDetailsViewController: UIViewController {
         self.registerDetailsColletionViewCell()
         self.detailsCollectionViewLayoutSetup()
         
+        self.setUpNavigationItem()
+    }
+    
+    private func setUpNavigationItem(){
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapOnBack))
+        self.navigationItem.leftBarButtonItem?.tintColor = .label
+    }
+    
+    @objc private func didTapOnBack(){
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func registerDetailsColletionViewCell(){
