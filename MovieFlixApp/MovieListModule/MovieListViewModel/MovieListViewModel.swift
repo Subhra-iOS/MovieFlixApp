@@ -27,7 +27,7 @@ class MovieListViewModel {
     private let serviceManager: ListServiceManager
     
     private var cancelable: Set<AnyCancellable> = Set<AnyCancellable>()
-    private var moviePublisher = CurrentValueSubject<[MovieListCellViewModel]?, Never>([MovieListCellViewModel(movieId: 0, mostPopular: .average, backdropImageUrl: "", posterImageUrl: "", title: "", overview: "", releaseDate: "", vote_average: 0.0, vote_count: 0.0, original_language: "", isDeleteHidden: true)])
+    private var moviePublisher = CurrentValueSubject<[MovieListCellViewModel]?, Never>([MovieListCellViewModel(movieId: -1, mostPopular: .average, backdropImageUrl: "", posterImageUrl: "", title: "", overview: "", releaseDate: "", vote_average: 0.0, vote_count: 0.0, original_language: "", isDeleteHidden: true)])
     
     init(serviceManager: ListServiceManager) {
         self.serviceManager = serviceManager
@@ -49,7 +49,12 @@ class MovieListViewModel {
     func updateColletionList(closure: @escaping (_ models: [MovieListCellViewModel]?) ->()){
         
         self.moviePublisher.receive(on: DispatchQueue.main)
+            .filter({ (models) -> Bool in
+                guard let list = models else { return false }
+                return list.filter({$0.movieId != 0}).count > 0
+            })
             .sink(receiveValue: { (list) in
+                print("\(String(describing: list))")
                 closure(list)
             }).store(in: &cancelable)
     }

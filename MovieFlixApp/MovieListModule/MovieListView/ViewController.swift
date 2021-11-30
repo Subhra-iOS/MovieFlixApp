@@ -49,7 +49,9 @@ class ViewController: UIViewController {
                 return
             }
             
-            guard let remoteModels: [MovieListCellViewModel] = models?.filter({$0.movieId != 0}),
+           /* guard let remoteModels: [MovieListCellViewModel] = models?.filter({$0.movieId != 0}),
+                  remoteModels.count > 0 else{ return }*/
+           guard let remoteModels: [MovieListCellViewModel] = models,
                   remoteModels.count > 0 else{ return }
             
             weakSelf.movieList = remoteModels
